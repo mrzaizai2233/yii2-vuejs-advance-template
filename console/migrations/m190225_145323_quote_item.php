@@ -47,6 +47,11 @@ class m190225_145323_quote_item extends Migration
             'created_at' => $this->integer()->notNull()->comment('Ngày tạo'),
             'updated_at' => $this->integer()->notNull()->comment('Ngày sửa'),
         ], $tableOptions);
+        $this->createIndex(
+            'IDX_QUOTE_ITEM',
+            'quote_item',
+            'quote_id,parent_item_id,product_id'
+        );
         $this->addForeignKey('QUOTE_ITEM_QUOTE_ID_QUOTE_ID',
             'quote_item',
             'quote_id',

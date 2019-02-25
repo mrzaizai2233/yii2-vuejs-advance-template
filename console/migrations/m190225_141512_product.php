@@ -49,7 +49,7 @@ class m190225_141512_product extends Migration
         $this->createIndex(
             'IDX_PRODUCT_CODE',
             'product',
-            'code'
+            'code,unit_id,category_id'
         );
         $this->addForeignKey('PRODUCT_UNIT_ID_UNIT_ID',
             'product',

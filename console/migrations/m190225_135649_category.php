@@ -37,12 +37,26 @@ class m190225_135649_category extends Migration
             'id' => $this->primaryKey(),
             'code' => $this->string()->notNull()->unique()->comment('Mã'),
             'name' => $this->string(32)->notNull()->comment('Tên'),
-            'parent_id' => $this->string()->null()->comment('Danh Mục Cha'),
+            'parent_id' => $this->integer(11)->null()->comment('Danh Mục Cha'),
 
             'status' => $this->smallInteger()->notNull()->defaultValue(1)->comment('Trạng Thái'),
             'created_at' => $this->integer()->notNull()->comment('Ngày tạo'),
             'updated_at' => $this->integer()->notNull()->comment('Ngày sửa'),
         ], $tableOptions);
+
+        // creates index for column `category_id`
+        $this->createIndex(
+            'IDX_CATEGORY_CODE',
+            'category',
+            'code,parent_id'
+        );
+        $this->addForeignKey('CATEGORY_PARENT_ID_CATEGORY_ID',
+            'category',
+            'parent_id',
+            'category',
+            'id',
+            'CASCADE');
+
     }
 
     public function down()

@@ -42,6 +42,12 @@ class m190225_140202_unit extends Migration
             'created_at' => $this->integer()->notNull()->comment('Ngày tạo'),
             'updated_at' => $this->integer()->notNull()->comment('Ngày sửa'),
         ], $tableOptions);
+        $this->createIndex(
+            'IDX_UNIT_CODE',
+            'unit',
+            'code'
+        );
+
     }
 
     public function down()
