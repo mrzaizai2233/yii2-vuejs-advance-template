@@ -41,7 +41,7 @@ class QuoteItem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['product_id', 'created_at', 'updated_at'], 'required'],
+            [['product_id'], 'required'],
             [['product_id', 'parent_item_id', 'quote_id', 'status', 'created_at', 'updated_at'], 'integer'],
             [['qty', 'price', 'discount_percent', 'discount_amount', 'total'], 'number'],
             [['parent_item_id'], 'exist', 'skipOnError' => true, 'targetClass' => QuoteItem::className(), 'targetAttribute' => ['parent_item_id' => 'id']],

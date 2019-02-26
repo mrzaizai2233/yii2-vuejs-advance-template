@@ -39,9 +39,9 @@ class m190225_140606_customer extends Migration
             'name' => $this->string(200)->notNull()->comment('Tên Khách Hàng'),
             'address' => $this->string(255)->null()->comment('Địa Chỉ'),
             'phone' => $this->integer(20)->null()->comment('Số Điện Thoại'),
-            'status' => $this->smallInteger()->notNull()->defaultValue(1)->comment('Trạng Thái'),
-            'created_at' => $this->integer()->notNull()->comment('Ngày tạo'),
-            'updated_at' => $this->integer()->notNull()->comment('Ngày sửa'),
+            'status' => $this->smallInteger()->null()->defaultValue(1)->comment('Trạng Thái'),
+            'created_at' => $this->integer()->null()->comment('Ngày tạo'),
+            'updated_at' => $this->integer()->null()->comment('Ngày sửa'),
         ], $tableOptions);
     }
 

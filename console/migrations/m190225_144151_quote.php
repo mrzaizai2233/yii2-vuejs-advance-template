@@ -37,10 +37,10 @@ class m190225_144151_quote extends Migration
             'id' => $this->primaryKey(),
             'total' => $this->decimal(12,4)->null()->comment('Tổng Tiền'),
             'customer_id'=>$this->integer(11)->null()->comment('Khách'),
-            'status' => $this->smallInteger()->notNull()->defaultValue(1)->comment('Trạng Thái'),
             'note' => $this->text()->null()->comment('Ghi Chú'),
-            'created_at' => $this->integer()->notNull()->comment('Ngày tạo'),
-            'updated_at' => $this->integer()->notNull()->comment('Ngày sửa'),
+            'status' => $this->smallInteger()->null()->defaultValue(1)->comment('Trạng Thái'),
+            'created_at' => $this->integer()->null()->comment('Ngày tạo'),
+            'updated_at' => $this->integer()->null()->comment('Ngày sửa'),
         ], $tableOptions);
         $this->createIndex(
             'IDX_QUOTE',

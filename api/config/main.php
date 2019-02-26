@@ -50,18 +50,18 @@ return [
         ],
 
         'urlManager' => [
-            // 'enablePrettyUrl' => true,
-            // 'enableStrictParsing' => false,//if set true only url V1/defaults working else V1/default/index and V1/defaults working
-            // 'showScriptName' => false,
-            // 'rules' => [
-            //     // 'GET users' => 'V1/default/index',//replace http://domain.com/backend/web/users with http://domain.com/backend/web/V1/default/index
-            //     [
-            //         'class' => 'yii\rest\UrlRule',//replace V1/defaults with V1/default/index
-            //         'controller' => ['V1/default','V1/customer','V1/category','V1/unit','V1/product','V1/quote','V1/quote-item'],
-            //         'extraPatterns' => [
-            //         ],
-            //     ],
-            // ],
+//             'enablePrettyUrl' => true,
+//             'enableStrictParsing' => false,//if set true only url V1/defaults working else V1/default/index and V1/defaults working
+//             'showScriptName' => false,
+//             'rules' => [
+//                 // 'GET users' => 'V1/default/index',//replace http://domain.com/backend/web/users with http://domain.com/backend/web/V1/default/index
+//                 [
+//                     'class' => 'yii\rest\UrlRule',//replace V1/defaults with V1/default/index
+//                     'controller' => ['V1/default','V1/customer','V1/category','V1/unit','V1/product','V1/quote','V1/quote-item'],
+//                     'extraPatterns' => [
+//                     ],
+//                 ],
+//             ],
         ],
 
     ],

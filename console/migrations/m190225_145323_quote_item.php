@@ -43,9 +43,9 @@ class m190225_145323_quote_item extends Migration
             'discount_amount' => $this->decimal(12,4)->null()->comment('Số Tiền Giảm Giá'),
             'total' => $this->decimal(12,4)->null()->comment('Tổng Tiền'),
             'quote_id'=>$this->integer(11)->null()->comment('Mã Báo Giá'),
-            'status' => $this->smallInteger()->notNull()->defaultValue(1)->comment('Trạng Thái'),
-            'created_at' => $this->integer()->notNull()->comment('Ngày tạo'),
-            'updated_at' => $this->integer()->notNull()->comment('Ngày sửa'),
+            'status' => $this->smallInteger()->null()->defaultValue(1)->comment('Trạng Thái'),
+            'created_at' => $this->integer()->null()->comment('Ngày tạo'),
+            'updated_at' => $this->integer()->null()->comment('Ngày sửa'),
         ], $tableOptions);
         $this->createIndex(
             'IDX_QUOTE_ITEM',

@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "{{%customer}}".
@@ -28,13 +30,14 @@ class Customer extends \yii\db\ActiveRecord
         return '{{%customer}}';
     }
 
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['code', 'name', 'created_at', 'updated_at'], 'required'],
+            [['code', 'name'], 'required'],
             [['phone', 'status', 'created_at', 'updated_at'], 'integer'],
             [['code', 'address'], 'string', 'max' => 255],
             [['name'], 'string', 'max' => 200],

@@ -41,9 +41,9 @@ class m190225_141512_product extends Migration
             'input_price' => $this->float()->notNull()->comment('Giá Nhập'),
             'unit_id' => $this->integer(11)->notNull()->comment('Đơn Vị Tính'),
             'category_id' => $this->integer(11)->notNull()->comment('Danh Mục'),
-            'status' => $this->smallInteger()->notNull()->defaultValue(1)->comment('Trạng Thái'),
-            'created_at' => $this->integer()->notNull()->comment('Ngày tạo'),
-            'updated_at' => $this->integer()->notNull()->comment('Ngày sửa'),
+            'status' => $this->smallInteger()->null()->defaultValue(1)->comment('Trạng Thái'),
+            'created_at' => $this->integer()->null()->comment('Ngày tạo'),
+            'updated_at' => $this->integer()->null()->comment('Ngày sửa'),
         ], $tableOptions);
         // creates index for column `category_id`
         $this->createIndex(

@@ -39,9 +39,9 @@ class m190225_135649_category extends Migration
             'name' => $this->string(32)->notNull()->comment('Tên'),
             'parent_id' => $this->integer(11)->null()->comment('Danh Mục Cha'),
 
-            'status' => $this->smallInteger()->notNull()->defaultValue(1)->comment('Trạng Thái'),
-            'created_at' => $this->integer()->notNull()->comment('Ngày tạo'),
-            'updated_at' => $this->integer()->notNull()->comment('Ngày sửa'),
+            'status' => $this->smallInteger()->null()->defaultValue(1)->comment('Trạng Thái'),
+            'created_at' => $this->integer()->null()->comment('Ngày tạo'),
+            'updated_at' => $this->integer()->null()->comment('Ngày sửa'),
         ], $tableOptions);
 
         // creates index for column `category_id`

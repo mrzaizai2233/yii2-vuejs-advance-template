@@ -32,7 +32,7 @@ class Unit extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['code', 'name', 'created_at', 'updated_at'], 'required'],
+            [['code', 'name'], 'required'],
             [['status', 'created_at', 'updated_at'], 'integer'],
             [['code'], 'string', 'max' => 255],
             [['name'], 'string', 'max' => 32],

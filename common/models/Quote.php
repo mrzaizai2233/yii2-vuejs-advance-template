@@ -35,7 +35,7 @@ class Quote extends \yii\db\ActiveRecord
     {
         return [
             [['total'], 'number'],
-            [['customer_id', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['customer_id', 'status'], 'integer'],
             [['note'], 'string'],
             [['created_at', 'updated_at'], 'required'],
             [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::className(), 'targetAttribute' => ['customer_id' => 'id']],
