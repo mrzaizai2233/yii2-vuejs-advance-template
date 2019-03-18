@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%quote}}".
@@ -20,6 +21,18 @@ use Yii;
  */
 class Quote extends \yii\db\ActiveRecord
 {
+    public $items = [];
+
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -37,8 +50,27 @@ class Quote extends \yii\db\ActiveRecord
             [['total'], 'number'],
             [['customer_id', 'status'], 'integer'],
             [['note'], 'string'],
-            [['created_at', 'updated_at'], 'required'],
+            [['created_at', 'updated_at', 'items'], 'safe'],
             [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::className(), 'targetAttribute' => ['customer_id' => 'id']],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function fields()
+    {
+        return [
+            'id',
+            'total',
+            'customer_id',
+            'status',
+            'note',
+            'created_at',
+            'updated_at',
+            'items'=>function(){
+                return $this->quoteItems;
+            }
         ];
     }
 
@@ -72,5 +104,24 @@ class Quote extends \yii\db\ActiveRecord
     public function getQuoteItems()
     {
         return $this->hasMany(QuoteItem::className(), ['quote_id' => 'id']);
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        $item_ids = [];
+        foreach ($this->items as $item) {
+            $itemInstance = isset($item['id']) ? QuoteItem::findOne($item['id']) : new QuoteItem();
+            $itemInstance->setAttributes($item);
+            $itemInstance->quote_id = $this->id;
+            if ($itemInstance->save()) {
+                $item_ids[] = $itemInstance->id;
+            } else {
+                foreach ($itemInstance->getErrors() as $error) {
+                    Yii::$app->session->addFlash('errors',$error);
+                }
+            }
+        }
+        QuoteItem::deleteAll(['AND', ['NOT IN', $item_ids, 'id'], ['=', 'quote_id', $this->id]]);
+        parent::afterSave($insert, $changedAttributes);
     }
 }

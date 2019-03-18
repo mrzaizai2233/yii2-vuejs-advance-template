@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%quote_item}}".
@@ -27,6 +28,17 @@ use Yii;
  */
 class QuoteItem extends \yii\db\ActiveRecord
 {
+
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -42,8 +54,9 @@ class QuoteItem extends \yii\db\ActiveRecord
     {
         return [
             [['product_id'], 'required'],
-            [['product_id', 'parent_item_id', 'quote_id', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['product_id', 'parent_item_id', 'quote_id', 'status'], 'integer'],
             [['qty', 'price', 'discount_percent', 'discount_amount', 'total'], 'number'],
+            [[ 'created_at', 'updated_at'], 'safe'],
             [['parent_item_id'], 'exist', 'skipOnError' => true, 'targetClass' => QuoteItem::className(), 'targetAttribute' => ['parent_item_id' => 'id']],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
             [['quote_id'], 'exist', 'skipOnError' => true, 'targetClass' => Quote::className(), 'targetAttribute' => ['quote_id' => 'id']],

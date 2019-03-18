@@ -9,7 +9,7 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log','frontend\components\AttributeEvent',],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
@@ -46,4 +46,10 @@ return [
         */
     ],
     'params' => $params,
+    'on beforeRequest' => function () {
+
+    },
+    'on beforeInsert' => function () {
+
+    }
 ];

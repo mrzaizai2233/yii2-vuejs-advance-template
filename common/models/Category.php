@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%category}}".
@@ -28,6 +30,20 @@ class Category extends \yii\db\ActiveRecord
     {
         return '{{%category}}';
     }
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+            [
+                'class'=>SluggableBehavior::className(),
+                'attribute'=>'name',
+                'slugAttribute'=>'code'
+            ]
+        ];
+    }
 
     /**
      * {@inheritdoc}
@@ -35,7 +51,7 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['code', 'name'], 'required'],
+            [['name'], 'required'],
             [['parent_id', 'status', 'created_at', 'updated_at'], 'integer'],
             [['code'], 'string', 'max' => 255],
             [['name'], 'string', 'max' => 32],

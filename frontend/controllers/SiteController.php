@@ -1,8 +1,14 @@
 <?php
+
 namespace frontend\controllers;
 
+use common\models\Category;
 use Yii;
 use yii\base\InvalidArgumentException;
+use yii\base\ModelEvent;
+use yii\db\ActiveRecord;
+use yii\db\BaseActiveRecord;
+use yii\helpers\ArrayHelper;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -212,4 +218,31 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionCategory()
+    {
+        $category = new Category();
+        $category->code = 'category-4';
+        $category->name = 'category 1';
+        $category->save();
+//
+//        $foo = new \frontend\components\Foo();
+//        $foo->on('hello', [$this, 'hello']);
+//        $foo->bar();
+        $a= [1];
+        $b= [2];
+    }
+
+    public function hello()
+    {
+        echo "12312312";
+
+    }
+
+    public function init()
+    {
+        parent::init();
+
+    }
+
 }
